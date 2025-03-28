@@ -25,11 +25,11 @@ export default function Textform(props) {
             <button className="btn btn-primary mx-2" onClick={clearText}>Clear text</button>
             <div className="container">
                 <h2 className={`text-${props.mode == 'dark' ? 'light' : 'dark'}`}>Your Text Summary</h2>
-                <p className={`text-${props.mode == 'dark' ? 'light' : 'dark'}`}>{text.split(" ").length} words, {text.length} characters</p>
+                <p className={`text-${props.mode == 'dark' ? 'light' : 'dark'}`}>{text != "" ? text.split(" ").length : "0"} words, {text.length} characters</p>
                 <p className={`text-${props.mode == 'dark' ? 'light' : 'dark'}`}>{0.005 * text.split(" ").length} Minutes to read these words</p>
                 <p className={`text-${props.mode == 'dark' ? 'light' : 'dark'}`}>No of "is" in the text: {tempArr.length}</p>
                 <h2 className={`text-${props.mode == 'dark' ? 'light' : 'dark'}`}>Preview</h2>
-                <p className={`text-${props.mode == 'dark' ? 'light' : 'dark'}`}>{text.length<1 ? "Enter something to preview" : text}</p>
+                <p className={`text-${props.mode == 'dark' ? 'light' : 'dark'}`}>{text.length < 1 ? "Enter something to preview" : text}</p>
             </div>
         </>
     )

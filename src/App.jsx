@@ -1,28 +1,57 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar'
 import Textform from './components/Textform'
-// import About from './components/About'
+import Alert from './components/Alert'
+import About from './components/About'
 
 function App() {
   const [mode, setMode] = useState('light');
-  function changeMode() {
-    if (mode == 'dark') {
-      setMode('light');
-      document.body.style.backgroundColor = '#fff';
-    } else {
+  const [alert, setAlert] = useState(null);
+  const [color, setColor] = useState('grey');
+
+  const showAlert = (message, type) => {
+    setAlert({
+      message: message,
+      type: type
+    })
+  }
+
+  function hideAlert() {
+    setAlert(null);
+  }
+
+  function changeColor(event) {
+    setColor(event.target.value);
+  }
+
+(()=> {
+  if(mode == 'light') {
+    document.body.style.backgroundColor = '#fff';
+  } else {
+    document.body.style.backgroundColor = color;
+  }
+})();
+
+function changeMode() {
+    if (mode == 'light') {
       setMode('dark');
-      document.body.style.backgroundColor = 'grey';
+      showAlert('Dark mode enabled!', 'info');
+    } else {
+      setMode('light');
+      setAlert(null);
     }
   }
   return (
     <>
-      <Navbar title="TextUtils" mode={mode} changeViewMode={changeMode} />
+      <Navbar title="TextUtils" mode={mode} changeViewMode={changeMode} changeModeColor={changeColor} />
+      <Alert alertMessage={alert} removeAlert={hideAlert} />
       <div className="container my-3">
-        <Textform heading="Enter the text to analyze" mode={mode} />
-        {/* <About /> */}
+      <Routes>
+          <Route path="/" element={<Textform heading="Enter the text to analyze" mode={mode} />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
       </div>
     </>
   )

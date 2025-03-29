@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import './App.css'
-import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar'
 import Textform from './components/Textform'
 import Alert from './components/Alert'
@@ -26,15 +25,15 @@ function App() {
     setColor(event.target.value);
   }
 
-(()=> {
-  if(mode == 'light') {
-    document.body.style.backgroundColor = '#fff';
-  } else {
-    document.body.style.backgroundColor = color;
-  }
-})();
+  (() => {
+    if (mode == 'light') {
+      document.body.style.backgroundColor = '#fff';
+    } else {
+      document.body.style.backgroundColor = color;
+    }
+  })();
 
-function changeMode() {
+  function changeMode() {
     if (mode == 'light') {
       setMode('dark');
       showAlert('Dark mode enabled!', 'info');
@@ -48,10 +47,10 @@ function changeMode() {
       <Navbar title="TextUtils" mode={mode} changeViewMode={changeMode} changeModeColor={changeColor} />
       <Alert alertMessage={alert} removeAlert={hideAlert} />
       <div className="container my-3">
-      <Routes>
-          <Route path="/" element={<Textform heading="Enter the text to analyze" mode={mode} />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
+      
+         <Textform heading="Enter the text to analyze" mode={mode} />
+          {/* <About /> */}
+        
       </div>
     </>
   )

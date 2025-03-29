@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router'
 
 
 export default function Navbar(props) {
@@ -13,11 +12,11 @@ export default function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+              <a className="nav-link active" aria-current="page" href="/">Home</a>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link className="nav-link" to="/about">About</Link>
-            </li>
+            </li> */}
           </ul>
           <div className="btn-group mx-5" role="group" aria-label="Basic radio toggle button group">
             <input type="radio" className="btn-check" value="#404143" name="btnradio" id="btnradio1"  onClick={props.changeModeColor}  />
